@@ -26,6 +26,7 @@ public class TournamentDTO implements Serializable {
     private List<Long> participants = new ArrayList<>();
     private Boolean approved;
     private Boolean finished;
+    private String imageId;
 
     public TournamentDTO(@NotNull Tournament tournament) {
         this.id = tournament.getId();
@@ -37,5 +38,6 @@ public class TournamentDTO implements Serializable {
             this.participants.add(participant.getUser().getId());
         this.approved = tournament.getApproved();
         this.finished = tournament.getFinished();
+        this.imageId = tournament.getImageId();
     }
 }

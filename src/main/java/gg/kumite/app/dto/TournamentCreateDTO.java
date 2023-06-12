@@ -20,4 +20,5 @@ public class TournamentCreateDTO implements Serializable {
     private List<String> platforms;
     private Long gameId;
     private Long creatorId;
+    private String imageId;
 }

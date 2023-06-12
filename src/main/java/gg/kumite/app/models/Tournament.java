@@ -31,14 +31,16 @@ public class Tournament {
     private Set<UserTournament> participants = new HashSet<>();
     private Boolean approved;
     private Boolean finished;
+    private String imageId;
 
-    public Tournament(String name, List<String> platforms, Game game, User creator) {
+    public Tournament(String name, List<String> platforms, Game game, User creator, String imageId) {
         this.name = name;
         this.platforms.addAll(platforms);
         this.game = game;
         this.creator = creator;
         this.approved = false;
         this.finished = false;
+        this.imageId = imageId;
     }
 
     public Tournament(TournamentCreateDTO tournamentCreateDTO, Game game, User creator) {
@@ -48,5 +50,6 @@ public class Tournament {
         this.creator = creator;
         this.approved = false;
         this.finished = false;
+        this.imageId = tournamentCreateDTO.getImageId();
     }
 }
