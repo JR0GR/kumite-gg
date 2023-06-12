@@ -11,7 +11,6 @@ import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Base64Utils;
 
 import gg.kumite.app.factories.GameFactory;
 import gg.kumite.app.models.Favourite;
@@ -96,15 +95,11 @@ public class Seeder implements CommandLineRunner {
       }
    }
 
-   private static Binary binarizeImage(BufferedImage img_param) {
+   private static Binary binarizeImage(BufferedImage img_param) throws IOException {
       ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-      try {
-         ImageIO.write(img_param, "png", bytes);
-      }
-      catch (IOException e) {
-      }
-      byte[] resultantimage = Base64Utils.encode(bytes.toByteArray());
 
-      return new Binary(resultantimage);
+      ImageIO.write(img_param, "png", bytes);
+
+      return new Binary(bytes.toByteArray());
    }
 }
