@@ -83,14 +83,12 @@ public class Seeder implements CommandLineRunner {
          favouriteRepository.save(new Favourite(game2, user2));
          favouriteRepository.save(new Favourite(game3, user2));
          Tournament t1 = tournamentRepository.save(new Tournament("campeonato 1", game1.getPlatforms(), game1, user1, tournamentImage1.getId()));
-         Tournament t2 = tournamentRepository.save(new Tournament("campeonato 2", game2.getPlatforms(), game2, user2, tournamentImage2.getId()));
+         Tournament t2 = tournamentRepository.save(new Tournament("campeonato 2", game2.getPlatforms(), game2, user1, tournamentImage2.getId()));
          Tournament t3 = tournamentRepository.save(new Tournament("campeonato 3", game3.getPlatforms(), game3, user1, tournamentImage3.getId()));
          userTournamentRepository.save(new UserTournament(t1, user1));
          userTournamentRepository.save(new UserTournament(t2, user1));
-         userTournamentRepository.save(new UserTournament(t3, user1));
          userTournamentRepository.save(new UserTournament(t1, user2));
          userTournamentRepository.save(new UserTournament(t2, user2));
-         userTournamentRepository.save(new UserTournament(t3, user2));
 
       }
    }
