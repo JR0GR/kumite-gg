@@ -15,12 +15,12 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FavouriteDTO implements Serializable {
-   private Long user_id;
-   private Long game_id;
+public class FavouriteCreateDTO implements Serializable {
+   private Long userId;
+   private Long gameId;
 
-   public FavouriteDTO(@NotNull Favourite favourite) {
-      this.game_id = favourite.getGame().getId();
-      this.user_id = favourite.getUser().getId();
+   public FavouriteCreateDTO(@NotNull Favourite favourite) {
+      this.gameId = favourite.getGame().getId();
+      this.userId = favourite.getUser().getId();
    }
 }
