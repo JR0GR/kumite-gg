@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import gg.kumite.app.dto.FinishTournamentDTO;
 import gg.kumite.app.dto.TournamentCreateDTO;
 import gg.kumite.app.dto.TournamentDTO;
 import gg.kumite.app.models.Game;
@@ -77,6 +78,25 @@ public class TournamentController {
          tournament.setId(id);
          tournamentRepository.save(tournament);
          return new ResponseEntity<>(new TournamentDTO(tournament), HttpStatus.OK);
+      }
+      return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+   }
+
+   @PutMapping("/finish/")
+   public ResponseEntity<Object> finish(@RequestBody FinishTournamentDTO finishTournamentDTO) {
+      Optional<Tournament> oldTournament = tournamentRepository.findById(finishTournamentDTO.getTournamentId());
+      Optional<User> oldUser = userRepository.findById(finishTournamentDTO.getUserId());
+      if (oldTournament.isPresent() && oldUser.isPresent()) {
+
+         Tournament tournament = oldTournament.get();
+         tournament.setFinished(true);
+         tournamentRepository.save(tournament);
+
+         User user = oldUser.get();
+         user.setWins(user.getWins() + 1);
+         userRepository.save(user);
+
+         return new ResponseEntity<>(true, HttpStatus.OK);
       }
       return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
    }
